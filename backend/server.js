@@ -7,6 +7,8 @@ import path from 'path'
 
 // importing the functions
 import { connectDB } from './src/config/db.js';
+import { rateLimiter } from './src/middleware/rateLimiter.js'
+
 
 
 // importing the routes
@@ -23,6 +25,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+app.use(rateLimiter)
 app.use(cors())
 app.use(express.json())
 
